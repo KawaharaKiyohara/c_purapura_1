@@ -95,10 +95,8 @@ void kbcEndFrame()
 		if (isPressA == false) {
 			isTriggerA = true;
 		}
-		else {
-			
-		}
-		isPressA = false;
+
+		isPressA = true;
 	}
 }
 int kbcIsTriggerA()
