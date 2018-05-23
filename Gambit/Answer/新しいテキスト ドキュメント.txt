@@ -1,0 +1,33 @@
+		
+if (siro.tensinoInori == 0) {
+	CommandTenshiNoInori(siro);
+}
+
+if (sensi.buffCount == 0) {
+	CommandSukuruto(siro, sensi);
+}
+if (siro.buffCount == 0) {
+	CommandSukuruto(siro, siro);
+}
+if (siro.hp < 1200) {
+	CommandHoimi(siro, siro);
+}
+if (ryu_san.hp == 0) {
+	CommandZaoriku(siro, ryu_san);
+}
+
+
+
+
+if (sensi.hp > 2500 && ryu_san.hp > 1000) {
+	CommandBaikiruto(siro, ryu_san);
+}			
+
+if (sensi.hp < 2500) {
+	CommandHoimi(siro, sensi);
+	CommandHoimi(siro, sensi);
+}
+if (ryu_san.hp < 200) {
+	CommandHoimi(siro, ryu_san);
+	CommandHoimi(siro, ryu_san);
+}

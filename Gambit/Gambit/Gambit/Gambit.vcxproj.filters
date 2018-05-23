@@ -33,7 +33,7 @@
       <Filter>ソース ファイル\lib</Filter>
     </ClInclude>
     <ClInclude Include="AICommand.h">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\Other</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
