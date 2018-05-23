@@ -4,7 +4,7 @@
 //マップの高さ。
 const int FRAME_BUFFER_HEIGHT = 20;
 //マップの幅。
-const int FRAME_BUFFER_WIDTH = 20;
+const int FRAME_BUFFER_WIDTH = 32;
 
 static char sFrameBuffer[FRAME_BUFFER_HEIGHT][FRAME_BUFFER_WIDTH];
 
@@ -42,7 +42,7 @@ void kbcBeginFrame()
 		dwSize);        // COORD dwSiz
 
 	//コンソールの高さを設定。
-	SMALL_RECT consoleWindow = { 0, 0, 20, 20 };
+	SMALL_RECT consoleWindow = { 0, 0, 40, 20 };
 	BOOL ret = SetConsoleWindowInfo(
 		hCons, // HANDLE hConsoleOutput
 		TRUE,           // BOOL bAbsolute
@@ -51,6 +51,9 @@ void kbcBeginFrame()
 	//フレームバッファをクリア。
 	memset(sFrameBuffer, 0, sizeof(sFrameBuffer));
 }
+bool isPressA = false;
+bool isTriggerA = false;
+
 void kbcEndFrame()
 {
 	//フレームバッファの内容を画面に表示する。
@@ -60,9 +63,12 @@ void kbcEndFrame()
 		}
 		std::cout << "\n";
 	}
+	//Aキーおされるまで待機done
+	while (GetAsyncKeyState('A') == 0) {}
+
 
 	//32ミリ秒眠る。
-	Sleep(16);
+	Sleep(100);
 
 	//標準出力コンソールのハンドルを取得。
 	HANDLE hCons = GetStdHandle(STD_OUTPUT_HANDLE);
