@@ -1,0 +1,48 @@
+#include <iostream>
+#include <math.h>
+#include "lib.h"
+
+using namespace std;
+
+//2次元のベクトル構造体。
+struct Vector2 {
+	float x;
+	float y;
+};
+
+
+int main()
+{
+	//GeneratePosition関数はランダムな100個の座標を作成して、それをpositions配列に格納します。
+	//この時、characterPositionから、50以上離れてる座標の数をカウント。
+	//２点間の距離は下記のような計算で求めることができます。
+	//
+	/*0番目の点とキャラクターとの距離を計算するサンプルコード。
+	
+		//キャラクターから0番目の点に向かって伸びるベクトルを計算する。
+		Vector2 diff;
+		diff.x = characterPosition.x - positions[0].x;
+		diff.y = characterPosition.y - positions[0].y;
+		//三平方の定理を使って、diffの大きさを求める。
+		float t = diff.x * diff.x + diff.y * diff.y;
+		//sqrtはC言語の標準関数で、引数で渡された数字の平方根を計算してくれます。
+		float dist = sqrt( t );
+	*/
+
+	Vector2 positions[100];
+	GeneratePositions(positions);
+	Vector2 characterPosition = {20.0f, 30.0f};
+	int count = 0;
+	for (int i = 0; i < 100; i++) {
+		Vector2 diff;
+		diff.x = characterPosition.x - positions[i].x;
+		diff.y = characterPosition.y - positions[i].y;
+		float len = sqrt(diff.x * diff.x + diff.y * diff.y);
+		if (len >= 50.0f) {
+			count++;
+		}
+	}
+	//答え合わせ。
+	SubmissionAnswer(count);
+	return 0;
+}
