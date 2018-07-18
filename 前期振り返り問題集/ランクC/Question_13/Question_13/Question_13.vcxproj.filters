@@ -25,7 +25,7 @@
       <Filter>ライブラリ\lib</Filter>
     </ClCompile>
     <ClCompile Include="Source.cpp">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
