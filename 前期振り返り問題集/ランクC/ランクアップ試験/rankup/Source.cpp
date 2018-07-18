@@ -37,8 +37,7 @@ int main()
 	//男性成人の数、女性成人の数、未成年の数をそれぞれカウントする。
 	int manCount = 0;		//男性の数。
 	int womanCount = 0;		//女性の数。
-	int woman_birthday_4_7 = 0;	//未成年の数。
-
+	int woman_birthday_4_7 = 0;	//4月または7月生まれで女性の数。
 
 
 	//答え合わせ。

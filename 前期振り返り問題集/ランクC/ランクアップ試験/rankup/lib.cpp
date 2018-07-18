@@ -58,10 +58,11 @@ void GenerateUserAccountInfo(UserAccountInfo account[])
 	for (int i = 0; i < 100; i++) {
 		account[i].gender = mt() % 2;
 		account[i].age = mt() % 80;
+		account[i].birthday.month = (mt() % 12) + 1;
 		//４月 or ７月生まれの女性の人数をカウントする。
 		if (account[i].gender == 0) {
-			if (account[i].birthday.day == 4
-				|| account[i].birthday.day == 7
+			if (account[i].birthday.month == 4
+				|| account[i].birthday.month == 7
 				) {
 				g_answer_02++;
 			}
