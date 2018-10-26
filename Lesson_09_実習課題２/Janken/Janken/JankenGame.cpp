@@ -54,6 +54,13 @@ void JankenGame::Run()
 		cout << "手を選択してください。0:グー、1:チョキ、2:パー\n";
 		cin >> playerNoTe;
 
+		
+		//Comの手を表示。
+		DispComNoTe();
+
+		//プレイヤーの手を表示。
+		DispPlayerNoTe();
+		
 		//勝敗テーブル。
 		//0だとあなたの勝ち、1だと引き分け、2だとあなたの負け。
 		const int resultTbl[3][3] = {
@@ -61,12 +68,6 @@ void JankenGame::Run()
 			{2, 1, 0 },
 			{0, 2, 1 },
 		};
-		//Comの手を表示。
-		DispComNoTe();
-
-		//プレイヤーの手を表示。
-		DispPlayerNoTe();
-
 		////////////////////////////////////////////////////////////
 		//実習課題
 		//DispResultMessage関数に渡す引数を考えよう！
@@ -83,6 +84,6 @@ void JankenGame::Run()
 		//ヒント　resultTblを使います。
 		//
 		////////////////////////////////////////////////////////////
-		DispResultMessage( /*resultTbl[playerNoTe][comNoTe]*/ );
+		DispResultMessage( /* ここに渡す引数を考える */ );
 	}
 }
