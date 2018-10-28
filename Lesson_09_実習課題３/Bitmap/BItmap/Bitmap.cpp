@@ -98,3 +98,74 @@ bool Bitmap::Save(const char* filePath)
 	//保存が成功したので、trueを返す。
 	return true;
 }
+/// <summary>
+/// 読み込んでいる画像データを白黒画像に変換する。
+/// </summary>
+void Bitmap::ConvertMonochrome()
+{
+	for (int y = 0; y < IMAGE_H; y++) {
+		for (int x = 0; x < IMAGE_W; x++) {
+			//モノクロにするぜ。
+			float Y = m_image[y][x].r * 0.299f
+					+ m_image[y][x].g * 0.587f
+					+ m_image[y][x].b * 0.114f;
+
+			m_image[y][x].r = Y;
+			m_image[y][x].g = Y;
+			m_image[y][x].b = Y;
+		}
+	}
+}
+/// <summary>
+/// 画像をぼかす。
+/// 4点サンプリングを行って、ぼかします。
+/// </summary>
+void Bitmap::ConvertBoke()
+{
+
+	//オリジナル画像。
+	SRgb m_originalImage[IMAGE_H][IMAGE_W];
+	//オリジナルの画像を保存しておく。
+	memcpy(m_originalImage, m_image, sizeof(m_originalImage));
+
+	for (int y = 0; y < IMAGE_H; y++) {
+		for (int x = 0; x < IMAGE_W; x++) {
+			//ぼかす。
+			int r, g, b;
+			r = g = b = 0;
+			//近傍9ピクセルの平均を変換後のカラーとする。
+			for( int k = 0;  k < 3; k++){
+			
+				int yy = y + k;
+				if (yy >= IMAGE_H) {
+					yy = y;
+				}
+				//1列目。
+				r += m_originalImage[yy][x].r;
+				g += m_originalImage[yy][x].g;
+				b += m_originalImage[yy][x].b;
+				int xx = x + 1;
+				if (xx >= IMAGE_W) {
+					//画像のサイズを超えたよ。
+					xx = x;
+				}
+				r += m_originalImage[yy][xx].r;
+				g += m_originalImage[yy][xx].g;
+				b += m_originalImage[yy][xx].b;
+
+				xx = x + 2;
+				if (xx >= IMAGE_W) {
+					//画像のサイズを超えたよ。
+					xx = x;
+				}
+				r += m_originalImage[yy][xx].r;
+				g += m_originalImage[yy][xx].g;
+				b += m_originalImage[yy][xx].b;
+			}
+			
+			m_image[y][x].r = r / 9;
+			m_image[y][x].g = g / 9;
+			m_image[y][x].b = b / 9;
+		}
+	}
+}

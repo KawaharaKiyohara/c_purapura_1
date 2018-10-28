@@ -124,7 +124,7 @@ void Bitmap::ConvertBoke()
 {
 
 	//オリジナル画像。
-	static SRgb m_originalImage[IMAGE_H][IMAGE_W];
+	SRgb m_originalImage[IMAGE_H][IMAGE_W];
 	//オリジナルの画像を保存しておく。
 	memcpy(m_originalImage, m_image, sizeof(m_originalImage));
 
@@ -132,39 +132,37 @@ void Bitmap::ConvertBoke()
 		for (int x = 0; x < IMAGE_W; x++) {
 			//ぼかす。
 			int r, g, b;
+			r = g = b = 0;
 			//近傍9ピクセルの平均を変換後のカラーとする。
-			r = m_originalImage[y][x].r;
-			g = m_originalImage[y][x].g;
-			b = m_originalImage[y][x].b;
-			r += m_originalImage[y][x+1].r;
-			g += m_originalImage[y][x+1].g;
-			b += m_originalImage[y][x+1].b;
-			r += m_originalImage[y][x + 2].r;
-			g += m_originalImage[y][x + 2].g;
-			b += m_originalImage[y][x + 2].b;
-
-
-			r += m_originalImage[y + 1][x].r;
-			g += m_originalImage[y + 1][x].g;
-			b += m_originalImage[y + 1][x].b;
-			r += m_originalImage[y + 1][x+1].r;
-			g += m_originalImage[y + 1][x+1].g;
-			b += m_originalImage[y + 1][x+1].b;
-			r += m_originalImage[y + 1][x + 2].r;
-			g += m_originalImage[y + 1][x + 2].g;
-			b += m_originalImage[y + 1][x + 2].b;
-
-			r += m_originalImage[y + 2][x].r;
-			g += m_originalImage[y + 2][x].g;
-			b += m_originalImage[y + 2][x].b;
-			r += m_originalImage[y + 2][x + 1].r;
-			g += m_originalImage[y + 2][x + 1].g;
-			b += m_originalImage[y + 2][x + 1].b;
-			r += m_originalImage[y + 2][x + 2].r;
-			g += m_originalImage[y + 2][x + 2].g;
-			b += m_originalImage[y + 2][x + 2].b;
+			for( int k = 0;  k < 3; k++){
 			
+				int yy = y + k;
+				if (yy >= IMAGE_H) {
+					yy = y;
+				}
+				//1列目。
+				r += m_originalImage[yy][x].r;
+				g += m_originalImage[yy][x].g;
+				b += m_originalImage[yy][x].b;
+				int xx = x + 1;
+				if (xx >= IMAGE_W) {
+					//画像のサイズを超えたよ。
+					xx = x;
+				}
+				r += m_originalImage[yy][xx].r;
+				g += m_originalImage[yy][xx].g;
+				b += m_originalImage[yy][xx].b;
 
+				xx = x + 2;
+				if (xx >= IMAGE_W) {
+					//画像のサイズを超えたよ。
+					xx = x;
+				}
+				r += m_originalImage[yy][xx].r;
+				g += m_originalImage[yy][xx].g;
+				b += m_originalImage[yy][xx].b;
+			}
+			
 			m_image[y][x].r = r / 9;
 			m_image[y][x].g = g / 9;
 			m_image[y][x].b = b / 9;

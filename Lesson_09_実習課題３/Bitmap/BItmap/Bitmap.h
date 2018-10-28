@@ -67,6 +67,15 @@ public:
 	/// 失敗したらfalseを返す。
 	/// </returns>
 	bool Save(const char* filePath);
+	/// <summary>
+	/// 読み込んでいる画像データを白黒画像に変換する。
+	/// </summary>
+	void ConvertMonochrome();
+	/// <summary>
+	/// 画像をぼかす。
+	/// 4点サンプリングを行って、ぼかします。
+	/// </summary>
+	void ConvertBoke();
 	
 private:
 
