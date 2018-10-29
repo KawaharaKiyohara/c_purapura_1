@@ -117,6 +117,17 @@ void Bitmap::ConvertMonochrome()
 	}
 }
 /// <summary>
+/// 画像から赤い成分を除去する。
+/// </summary>
+void Bitmap::RemoveRColor()
+{
+	for (int y = 0; y < IMAGE_H; y++) {
+		for (int x = 0; x < IMAGE_W; x++) {
+			m_image[y][x].r = 0; //R成分を除去する。
+		}
+	}
+}
+/// <summary>
 /// 画像をぼかす。
 /// 4点サンプリングを行って、ぼかします。
 /// </summary>

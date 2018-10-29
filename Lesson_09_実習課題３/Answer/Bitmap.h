@@ -76,7 +76,10 @@ public:
 	/// 4点サンプリングを行って、ぼかします。
 	/// </summary>
 	void ConvertBoke();
-	
+	/// <summary>
+	/// 画像から赤い成分を除去する。
+	/// </summary>
+	void RemoveRColor();
 private:
 
 	/// <summary>
