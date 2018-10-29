@@ -98,3 +98,38 @@ bool Bitmap::Save(const char* filePath)
 	//保存が成功したので、trueを返す。
 	return true;
 }
+/// <summary>
+/// 読み込んでいる画像データを白黒画像に変換する。
+/// </summary>
+void Bitmap::ConvertMonochrome()
+{
+#if 0 //課題のアンサー
+	for (int i = 0; i < IMAGE_H * IMAGE_W; i++) {
+		//モノクロにするぜ。
+		float Y = m_image[i].r * 0.299f
+				+ m_image[i].g * 0.587f
+				+ m_image[i].b * 0.114f;
+
+		m_image[i].r = Y;
+		m_image[i].g = Y;
+		m_image[i].b = Y;
+	}
+#endif
+#if 0 //ハンズオンのアンサー
+	//m_imageの先頭アドレスをpRgbに代入する。
+	SRgb* pRgb = m_image;
+	for (int i = 0; i < IMAGE_H * IMAGE_W; i++) {
+		//pRgbの指している先の画素をモノクロにしていく。
+		float Y = pRgb->r * 0.299f
+			+ pRgb->g * 0.587f
+			+ pRgb->b * 0.114f;
+
+		pRgb->r = Y;
+		pRgb->g = Y;
+		pRgb->b = Y;
+
+		//次
+		pRgb++;
+	}
+#endif
+}

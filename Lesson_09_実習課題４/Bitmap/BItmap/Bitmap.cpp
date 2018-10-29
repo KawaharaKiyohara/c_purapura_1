@@ -98,3 +98,27 @@ bool Bitmap::Save(const char* filePath)
 	//保存が成功したので、trueを返す。
 	return true;
 }
+/// <summary>
+/// 読み込んでいる画像データを白黒画像に変換する。
+/// </summary>
+void Bitmap::ConvertMonochrome()
+{
+	/*
+	//多次元配列版のコード。
+	for (int y = 0; y < IMAGE_H; y++) {
+		for (int x = 0; x < IMAGE_W; x++) {
+			//モノクロにするぜ。
+			float Y = m_image[y][x].r * 0.299f
+					+ m_image[y][x].g * 0.587f
+					+ m_image[y][x].b * 0.114f;
+
+			m_image[y][x].r = Y;
+			m_image[y][x].g = Y;
+			m_image[y][x].b = Y;
+		}
+	}
+	*/
+	//課題　多次元配列版のコードを参考にして、
+	//      白黒画像に変換するプログラムを実装しなさい。
+
+}

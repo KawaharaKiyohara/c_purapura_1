@@ -67,6 +67,10 @@ public:
 	/// 失敗したらfalseを返す。
 	/// </returns>
 	bool Save(const char* filePath);
+	/// <summary>
+	/// 読み込んでいる画像データを白黒画像に変換する。
+	/// </summary>
+	void ConvertMonochrome();
 private:
 
 	/// <summary>
@@ -85,7 +89,7 @@ private:
 											//Load関数を実行すると、読み込んだビットマップ画像のヘッダーがコピーされます。
 	BITMAPINFOHEADER m_bitmapInfoHeader;	//ビットマップファイルの情報ヘッダー。
 											//Load関数を実行すると、読み込んだビットマップの情報ヘッダーがコピーされます。
-	SRgb m_image[IMAGE_H][IMAGE_W];			//画像のイメージ。
+	SRgb m_image[IMAGE_H * IMAGE_W];		//画像のイメージ。
 private:
 };
 
