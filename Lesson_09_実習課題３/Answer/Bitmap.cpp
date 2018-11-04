@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Bitmap.h"
 #include <fstream>
+#include <algorithm>
 
 using namespace std;
 
@@ -39,10 +40,10 @@ bool Bitmap::Load(const char* filePath)
 	}
 	//ファイルサイズを計算する。
 	fs.seekg(0, fstream::end);		//ファイルの終端に移動する。
-	uint32_t endPos = fs.tellg();	//現在のファイルの位置を取得。
+	uint32_t endPos = (uint32_t)fs.tellg();	//現在のファイルの位置を取得。
 	fs.clear();
 	fs.seekg(0, fstream::beg);		//ファイルの先頭に戻どる。
-	uint32_t begPos = fs.tellg();	//現在のファイルの位置を取得。
+	uint32_t begPos = (uint32_t)fs.tellg();	//現在のファイルの位置を取得。
 	uint32_t fileSize = endPos - begPos;	//末尾-銭湯でファイルサイズを計算。
 
 	//読み込むぜ。
@@ -107,12 +108,12 @@ void Bitmap::ConvertMonochrome()
 		for (int x = 0; x < IMAGE_W; x++) {
 			//モノクロにするぜ。
 			float Y = m_image[y][x].r * 0.299f
-					+ m_image[y][x].g * 0.587f
-					+ m_image[y][x].b * 0.114f;
+				+ m_image[y][x].g * 0.587f
+				+ m_image[y][x].b * 0.114f;
 
-			m_image[y][x].r = Y;
-			m_image[y][x].g = Y;
-			m_image[y][x].b = Y;
+			m_image[y][x].r = (unsigned char)Y;
+			m_image[y][x].g = (unsigned char)Y;
+			m_image[y][x].b = (unsigned char)Y;
 		}
 	}
 }
@@ -133,7 +134,6 @@ void Bitmap::RemoveRColor()
 /// </summary>
 void Bitmap::ConvertBoke()
 {
-
 	//オリジナル画像。
 	SRgb m_originalImage[IMAGE_H][IMAGE_W];
 	//オリジナルの画像を保存しておく。
@@ -145,8 +145,8 @@ void Bitmap::ConvertBoke()
 			int r, g, b;
 			r = g = b = 0;
 			//近傍9ピクセルの平均を変換後のカラーとする。
-			for( int k = 0;  k < 3; k++){
-			
+			for (int k = 0; k < 3; k++) {
+
 				int yy = y + k;
 				if (yy >= IMAGE_H) {
 					yy = y;
@@ -173,10 +173,90 @@ void Bitmap::ConvertBoke()
 				g += m_originalImage[yy][xx].g;
 				b += m_originalImage[yy][xx].b;
 			}
-			
+
 			m_image[y][x].r = r / 9;
 			m_image[y][x].g = g / 9;
 			m_image[y][x].b = b / 9;
+		}
+	}
+}
+/// <summary>
+/// 読み込んでいる画像のコントラストを強める。
+/// </summary>
+void Bitmap::UpContrast()
+{
+	for (int y = 0; y < IMAGE_H; y++) {
+		for (int x = 0; x < IMAGE_W; x++) {
+			unsigned char akarusa = max(m_image[y][x].r, m_image[y][x].g);
+			akarusa = max(m_image[y][x].b, akarusa);
+
+			if (akarusa > 127) {
+				m_image[y][x].r = min( 255.0f, m_image[y][x].r * 1.5f);
+				m_image[y][x].g = min( 255.0f, m_image[y][x].g * 1.5f);
+				m_image[y][x].b = min( 255.0f, m_image[y][x].b * 1.5f);
+			}
+			else {
+				m_image[y][x].r *= 0.5f;
+				m_image[y][x].g *= 0.5f;
+				m_image[y][x].b *= 0.5f;
+			}
+		}
+	}
+}
+/// <summary>
+/// コントラストを強める。
+/// </summary>
+/// <param name="power">コントラストの強度。0.0～1.0</param>
+void Bitmap::UpContrast(float power)
+{
+	for (int y = 0; y < IMAGE_H; y++) {
+		for (int x = 0; x < IMAGE_W; x++) {
+			unsigned char akarusa = max(m_image[y][x].r, m_image[y][x].g);
+			akarusa = max(m_image[y][x].b, akarusa);
+
+			if (akarusa > 127) {
+				m_image[y][x].r = min(255.0f, m_image[y][x].r * (1.0f + power));
+				m_image[y][x].g = min(255.0f, m_image[y][x].g * (1.0f + power));
+				m_image[y][x].b = min(255.0f, m_image[y][x].b * (1.0f + power));
+			}
+			else {
+				m_image[y][x].r *= 1.0f - power;
+				m_image[y][x].g *= 1.0f - power;
+				m_image[y][x].b *= 1.0f - power;
+			}
+		}
+	}
+}
+/// <summary>
+/// 上下反転。
+/// </summary>
+void Bitmap::FlipUpDown()
+{
+	//オリジナル画像。
+	SRgb m_originalImage[IMAGE_H][IMAGE_W];
+	//オリジナルの画像を保存しておく。
+	memcpy(m_originalImage, m_image, sizeof(m_originalImage));
+
+	for (int y = 0; y < IMAGE_H; y++) {
+		for (int x = 0; x < IMAGE_W; x++) {
+			m_image[y][x] = m_originalImage[IMAGE_H - y - 1][x];
+		}
+	}
+}
+
+/// <summary>
+/// 左右反転。
+/// </summary>
+void Bitmap::FlipLeftRight()
+{
+	//オリジナル画像。
+	SRgb m_originalImage[IMAGE_H][IMAGE_W];
+	//オリジナルの画像を保存しておく。
+	memcpy(m_originalImage, m_image, sizeof(m_originalImage));
+
+	for (int y = 0; y < IMAGE_H; y++) {
+		for (int x = 0; x < IMAGE_W; x++) {
+			m_image[y][x] = m_originalImage[y][IMAGE_W - x - 1];
 		}
 	}
 }

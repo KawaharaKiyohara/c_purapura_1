@@ -68,6 +68,16 @@ public:
 	/// </returns>
 	bool Save(const char* filePath);
 	/// <summary>
+	/// コントラストを強める。
+	/// </summary>
+	void UpContrast();
+	/// <summary>
+	/// コントラストを強める。
+	/// </summary>
+	/// <param name="power">コントラストの強度。0.0～1.0</param>
+	void UpContrast(float power);
+
+	/// <summary>
 	/// 読み込んでいる画像データを白黒画像に変換する。
 	/// </summary>
 	void ConvertMonochrome();
@@ -80,6 +90,14 @@ public:
 	/// 画像から赤い成分を除去する。
 	/// </summary>
 	void RemoveRColor();
+	/// <summary>
+	/// 上下反転
+	/// </summary>
+	void FlipUpDown();
+	/// <summary>
+	/// 左右反転。
+	/// </summary>
+	void FlipLeftRight();
 private:
 
 	/// <summary>
