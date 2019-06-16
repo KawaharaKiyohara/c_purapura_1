@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns:atg="http://atg.xbox.com" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Assets">
+      <UniqueIdentifier>{ed0b04a6-fecd-4a2c-a462-59a8f4639f36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{8e114980-c1a3-4ada-ad7c-83caadf5daeb}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+    <Filter Include="Assets\modelData">
+      <UniqueIdentifier>{06086914-6aa4-4cad-9b07-6f9d357f04df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\sprite">
+      <UniqueIdentifier>{a6ce300a-b532-440d-b914-b4661d3015ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="other">
+      <UniqueIdentifier>{ba5de69a-ff90-4704-b435-e9a2c03b041a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Background.cpp">
+      <Filter>other</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>other</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyPathMoveLoop.cpp">
+      <Filter>other</Filter>
+    </ClCompile>
+    <ClCompile Include="Fade.cpp">
+      <Filter>other</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>other</Filter>
+    </ClCompile>
+    <ClCompile Include="GameCamera.cpp">
+      <Filter>other</Filter>
+    </ClCompile>
+    <ClCompile Include="GameClearCamera.cpp">
+      <Filter>other</Filter>
+    </ClCompile>
+    <ClCompile Include="GameClearControl.cpp">
+      <Filter>other</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOverCamera.cpp">
+      <Filter>other</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOverControl.cpp">
+      <Filter>other</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>other</Filter>
+    </ClCompile>
+    <ClCompile Include="Path.cpp">
+      <Filter>other</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>other</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerSilhouette.cpp">
+      <Filter>other</Filter>
+    </ClCompile>
+    <ClCompile Include="star.cpp">
+      <Filter>other</Filter>
+    </ClCompile>
+    <ClCompile Include="StarRenderer.cpp">
+      <Filter>other</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>other</Filter>
+    </ClCompile>
+    <ClCompile Include="Title.cpp">
+      <Filter>other</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyBase.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <CLInclude Include="resource.h">
+      <Filter>Resource Files</Filter>
+    </CLInclude>
+    <ClInclude Include="Background.h">
+      <Filter>other</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>other</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyPathMoveLoop.h">
+      <Filter>other</Filter>
+    </ClInclude>
+    <ClInclude Include="Fade.h">
+      <Filter>other</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>other</Filter>
+    </ClInclude>
+    <ClInclude Include="GameCamera.h">
+      <Filter>other</Filter>
+    </ClInclude>
+    <ClInclude Include="GameClearCamera.h">
+      <Filter>other</Filter>
+    </ClInclude>
+    <ClInclude Include="GameClearControl.h">
+      <Filter>other</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOverCamera.h">
+      <Filter>other</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOverControl.h">
+      <Filter>other</Filter>
+    </ClInclude>
+    <ClInclude Include="Path.h">
+      <Filter>other</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>other</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerSilhouette.h">
+      <Filter>other</Filter>
+    </ClInclude>
+    <ClInclude Include="star.h">
+      <Filter>other</Filter>
+    </ClInclude>
+    <ClInclude Include="StarRenderer.h">
+      <Filter>other</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>other</Filter>
+    </ClInclude>
+    <ClInclude Include="Title.h">
+      <Filter>other</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyBase.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Game.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <MeshContentTask Include="Assets\modelData\unityChan.fbx">
+      <Filter>Assets\modelData</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="Assets\modelData\background.FBX">
+      <Filter>Assets\modelData</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="Assets\modelData\enemy.FBX">
+      <Filter>Assets\modelData</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="Assets\modelData\star.FBX">
+      <Filter>Assets\modelData</Filter>
+    </MeshContentTask>
+  </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="Assets\modelData\utc_spec.tga">
+      <Filter>Assets\modelData</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Assets\modelData\utc_nomal.tga">
+      <Filter>Assets\modelData</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Assets\sprite\utc_all2_light.png">
+      <Filter>Assets\modelData</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Assets\modelData\UnityChanLogo.png">
+      <Filter>Assets\modelData</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Assets\sprite\title.png">
+      <Filter>Assets\sprite</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Assets\sprite\fade.png">
+      <Filter>Assets\sprite</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Assets\modelData\Park-Texture_specMap.tga">
+      <Filter>other</Filter>
+    </ImageContentTask>
+  </ItemGroup>
+</Project>
